@@ -1,0 +1,2 @@
+# Store Service
+Store service will be responsible for managing store data including its name, address, description, social media accounts, eCommerce Platform Accounts (Shopee, Tokopedia, etc.), profile pics, etc. 
