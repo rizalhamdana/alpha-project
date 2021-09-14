@@ -23,8 +23,9 @@ func (h *HealthHttpHandler) CheckHealth(e echo.Context) (err error) {
 	// ctx := "handler_health.check_health"
 
 	health := model.Health{
-		Status:  "Running",
-		Version: "v1",
+		Status:      "Running",
+		Version:     "v1",
+		ServiceName: "Store Service",
 	}
 
 	return e.JSON(http.StatusOK, health)
