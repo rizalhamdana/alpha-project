@@ -12,3 +12,8 @@ type Param struct {
 	Offset int
 	Filter interface{}
 }
+
+type Filter struct {
+	Search   string `query:"search"`
+	Category string `query:"category"`
+}

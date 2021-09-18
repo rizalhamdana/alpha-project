@@ -19,7 +19,10 @@ func (s *Service) HttpServerMain() {
 	e.Use(echoMid.CORS())
 
 	hGroup := e.Group("/api/health")
+	v1Group := e.Group("/api/v1")
 	s.HealthHandler.Mount(hGroup)
+
+	s.StoreHandler.Mount(v1Group)
 
 	// masterGroup := e.Group("/api/v1")
 	// set REST port
