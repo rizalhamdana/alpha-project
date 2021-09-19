@@ -14,18 +14,19 @@ func NewStoreRepository(repo *share.Repository) I_StoreRepository {
 	return &StoreRepository{repo}
 }
 
-func (r *StoreRepository) SearchStore(searchParam helper.Filter) (result *share.ResultRepository) {
-	return nil
+func (r *StoreRepository) SearchStore(filter helper.Filter, result chan<- share.ResultRepository) {
+	result <- share.ResultRepository{}
 }
-func (r *StoreRepository) GetOneStoreByUuid(uuid string) (result *share.ResultRepository) {
-	return nil
+
+func (r *StoreRepository) GetOneStoreByUuid(uuid string, result chan<- share.ResultRepository) {
+	result <- share.ResultRepository{}
 }
-func (r *StoreRepository) InsertOneStore(newStore *model.Store) (result *share.ResultRepository) {
-	return nil
+func (r *StoreRepository) InsertOneStore(newStore *model.Store, result chan<- share.ResultRepository) {
+	result <- share.ResultRepository{}
 }
-func (r *StoreRepository) UpdateOneStore(updateStore *model.Store) (result *share.ResultRepository) {
-	return nil
+func (r *StoreRepository) UpdateOneStore(updateStore *model.Store, result chan<- share.ResultRepository) {
+	result <- share.ResultRepository{}
 }
-func (r *StoreRepository) DeleteOneStoreByUuid(uuid string) (result *share.ResultRepository) {
-	return nil
+func (r *StoreRepository) DeleteOneStoreByUuid(uuid string, result chan<- share.ResultRepository) {
+	result <- share.ResultRepository{}
 }

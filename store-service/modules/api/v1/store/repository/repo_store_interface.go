@@ -7,9 +7,9 @@ import (
 )
 
 type I_StoreRepository interface {
-	SearchStore(filter helper.Filter) (result *share.ResultRepository)
-	GetOneStoreByUuid(uuid string) (result *share.ResultRepository)
-	InsertOneStore(newStore *model.Store) (result *share.ResultRepository)
-	UpdateOneStore(updateStore *model.Store) (result *share.ResultRepository)
-	DeleteOneStoreByUuid(uuid string) (result *share.ResultRepository)
+	SearchStore(filter helper.Filter, result chan<- share.ResultRepository)
+	GetOneStoreByUuid(uuid string, result chan<- share.ResultRepository)
+	InsertOneStore(newStore *model.Store, result chan<- share.ResultRepository)
+	UpdateOneStore(updateStore *model.Store, result chan<- share.ResultRepository)
+	DeleteOneStoreByUuid(uuid string, result chan<- share.ResultRepository)
 }

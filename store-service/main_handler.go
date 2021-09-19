@@ -6,9 +6,12 @@ import (
 	"rizalhamdana/alpha_project/store_service/config"
 
 	healthPresenter "rizalhamdana/alpha_project/store_service/modules/api/v1/health/presenter"
+	healthRepository "rizalhamdana/alpha_project/store_service/modules/api/v1/health/repository"
+	healthUsecase "rizalhamdana/alpha_project/store_service/modules/api/v1/health/usecase"
+
 	storePresenter "rizalhamdana/alpha_project/store_service/modules/api/v1/store/presenter"
-	"rizalhamdana/alpha_project/store_service/modules/api/v1/store/repository"
-	"rizalhamdana/alpha_project/store_service/modules/api/v1/store/usecase"
+	storeRepository "rizalhamdana/alpha_project/store_service/modules/api/v1/store/repository"
+	storeUsecase "rizalhamdana/alpha_project/store_service/modules/api/v1/store/usecase"
 	"rizalhamdana/alpha_project/store_service/modules/share"
 
 	"go.mongodb.org/mongo-driver/mongo"
@@ -40,11 +43,12 @@ func MakeHandler() *Service {
 	}
 
 	baseRepository := share.NewRepository(dbRead, dbWrite, &ctx)
+	healthRepo := healthRepository.NewHealthRepository()
+	healthUsecase := healthUsecase.NewHealthUsecase(healthRepo)
+	healthHandler := healthPresenter.NewHealthHandler(healthUsecase)
 
-	healthHandler := healthPresenter.NewHealthHandler()
-
-	storeRepo := repository.NewStoreRepository(baseRepository)
-	storeUsecase := usecase.NewStoreUsecase(storeRepo)
+	storeRepo := storeRepository.NewStoreRepository(baseRepository)
+	storeUsecase := storeUsecase.NewStoreUsecase(storeRepo)
 	storeHandler := storePresenter.NewStoreHttpHandler(storeUsecase)
 	return &Service{
 		HealthHandler: healthHandler,
