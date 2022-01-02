@@ -21,14 +21,17 @@ type ResultRepository struct {
 }
 
 // List Result
-type ListResult struct {
-	Meta *Meta         `json:"meta"`
-	Data []interface{} `json:"data"`
+type ResponseList struct {
+	IsSuccess bool        `json:"is_success"`
+	Message   string      `json:"message"`
+	Data      interface{} `json:"data,omitempty"`
+	Meta      *Meta       `json:"meta"`
 }
 
 type ResponseDetail struct {
-	Message string      `json:"message"`
-	Data    interface{} `json:"data,omitempty"`
+	IsSuccess bool        `json:"is_success"`
+	Message   string      `json:"message"`
+	Data      interface{} `json:"data,omitempty"`
 }
 
 // Meta data structure
